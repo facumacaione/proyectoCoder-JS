@@ -58,7 +58,14 @@ while (empezarTest === "SI") {
     }
 
     empezarTest = prompt("Quieres realizar el test nuevamente?\n1. Responde SI en caso de querer hacerlo\n2. Responde NO si deseas no realizarlo").toUpperCase();
-    if (empezarTest !== "SI" && empezarTest !== "NO") {
-        alert("No te entiendo mister, pero CHAU")
+    if (empezarTest === "SI") {
+        alert("De diez, vamos de nuevo");
+    }
+    else if (empezarTest === "NO"){
+        alert ("Ok bro, nos vemos")
+    }
+    else {
+        alert("No te entiendo crack, era responder SI o NO")
     }
 }
+alert("Gracias por realizar el test")
