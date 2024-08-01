@@ -1,71 +1,73 @@
-function correcto() {
-    alert("CORRECTO GERSON");
+
+class Profesional {
+    constructor(nombre, profesion, img, contacto) {
+        this.nombre = nombre;
+        this.profesion = profesion;
+        this.img = img;
+        this.contacto = contacto;
+    }
 }
 
-function incorrecto() {
-    alert("INCORRECTO, PEDAZO DE BURRO");
+const profesionalUno = new Profesional("Jorge Almirón", "Brujo", "https://www.diarioelnorte.com.ar/wp-content/uploads/2023/11/jorge-almiron-derrota.jpg", "JorgeAlmironCAB7@gmail.com");
+const profesionalDos = new Profesional("Marcelo Daniel Gallardo", "Ingeniero", "https://www.clarin.com/img/2024/07/31/UQVo2vePn_600x600__1.jpg", "MarceGallardo912@gmail.com");
+const profesionalTres = new Profesional("Carlos Bilardo", "Médico", "https://media.tycsports.com/files/2020/04/24/96491/carlos-bilardo.jpg", "CarlosSalvadorBilardo1986@outlook.com");
+const profesionalCuatro = new Profesional("Martín Demichelis", "Psicólogo", "https://media.elpatagonico.com/p/1a869b7e769226a5254f2bff6c47c053/adjuntos/193/imagenes/041/695/0041695797/770x0/smart/demichelisjpeg.jpeg", "MartínDemichelisVibes@gmail.com");
+const profesionalCinco = new Profesional("Carlos Bianchi", "Abogado", "img/carleto.png", "Virrey3@hotmail.com");
+
+const arrayDeProfesionales = [profesionalUno, profesionalDos, profesionalTres, profesionalCuatro, profesionalCinco];
+
+function cardProfesionales(trabajador) {
+    
+    const contenedor = document.getElementById("contenedor")
+    
+    const card = document.createElement("div");
+    card.className = "card";
+    
+    const nombre = document.createElement("h3");
+    nombre.className = "card__nombre";
+    nombre.innerText = trabajador.nombre;
+    
+    const profesion = document.createElement("p");
+    profesion.className = "card__profesion";
+    profesion.innerText = trabajador.profesion;
+    
+    const img = document.createElement("img");
+    img.src = trabajador.img;
+    img.className = "card__img";
+    
+    const contacto = document.createElement("p");
+    contacto.innerText = trabajador.contacto;
+    contacto.className = "card__contacto";
+    
+    const boton = document.createElement("button");
+    boton.className = "card__boton";
+    boton.innerText = "¡Contáctame!"
+    boton.addEventListener("click", () => { alert("En breves nos comunicaremos con usted") })
+    
+    card.append(nombre);
+    card.append(profesion);
+    card.append(img);
+    card.append(contacto);
+    card.append(boton);
+    
+    contenedor.append(card)
 }
 
-alert("Bienvenido al test de ¿Cuánto sabes de los mundiales de fútbol?, para empezar responde la siguiente pregunta: ")
-let empezarTest = prompt("Quieres empezar el test? \n1. Responde SI en caso de querer hacerlo\n2. Responde NO si deseas no realizarlo").toUpperCase();
+let entrarAlSistema;
+    
+while(true) {
 
-while (empezarTest === "SI") {
-    alert("RESPONDER LAS SIGUIENTES PREGUNTAS CON SU RESPECTIVA LETRA (A,B,C,D)");
-    let mundialesGanados= prompt("Quién es el equipo más ganador de Mundiales?\n A. BRASIL\n B. ALEMANIA \n C. ARGENTINA \n D. ITALIA").toUpperCase()
-    if(mundialesGanados=== "A") {
-        correcto();
-    }
-    else if(mundialesGanados!== "A") {
-        incorrecto();
-        alert("La respuesta es Brasil")
-    }
+    entrarAlSistema = prompt("DESEA CONTRATAR ALGÚN SERVICIO?\n Si desea avanzar ingrese 'SI' \n En caso contrario, ingresar 'NO' ").toUpperCase();
+    if (entrarAlSistema === "SI") {
+        alert("Bienvenido, en esta web podrá contratar el servicio que requiera, atendido por los mejores profesionales del país");
+        arrayDeProfesionales.forEach(el => cardProfesionales(el));
+        break
+    } else if(entrarAlSistema === "NO") {
+        alert("Esperamos que vuelva pronto");
+        break;
 
-    let maximoAnotador = prompt("Quién es el máximo goleador de los Mundiales \n A. Lionel Messi\n B. Mario Klose \n C. James Rodriguez \n D. Kylian Mbappé").toUpperCase();
-    if (maximoAnotador === "B") {
-        correcto();
-    }
-    else {
-        incorrecto();
-        alert("La respuesta es Mario Klose")
+    } else {
+        alert("No entendí tu respuesta");
     }
 
-    let ultimoGanador = prompt("Que selección fue la última en ganar la Copa del Mundo?  \n A. Brasil\n B. Alemania \n C. Francia \n D. Argentina").toUpperCase();
-    if (ultimoGanador === "D"){
-        correcto();
-    }
-    else {
-        incorrecto();
-        alert("La respuesta es ARGENTINA")
-    }
-
-    alert("Vamos con algunitas más dificiles, las anteriores estaban fáciles");
-    let masFaltasRecibidas = prompt("Que jugador en la historia de los mundiales ha recibido más faltas en la competición? \n A. Lionel Messi\n B. Ronaldo Nazario \n C. Neymar Jr \n D. Diego Armando Maradona").toUpperCase();
-    if(masFaltasRecibidas === "D") {
-        correcto();
-    }
-    else {
-        incorrecto();
-        alert("La respuesta es Diego Armando Maradona")
-    }
-
-    let golesMataMataCr7 = prompt("Cuantos goles en fase mata-mata tiene Cristiano Ronaldo en mundiales?  \n A. 3\n B. 2 \n C. 0 \n D. 5").toUpperCase();
-    if(golesMataMataCr7 === "C") {
-        correcto();
-    }
-    else {
-        incorrecto();
-        alert("La respuesta es 0")
-    }
-
-    empezarTest = prompt("Quieres realizar el test nuevamente?\n1. Responde SI en caso de querer hacerlo\n2. Responde NO si deseas no realizarlo").toUpperCase();
-    if (empezarTest === "SI") {
-        alert("De diez, vamos de nuevo");
-    }
-    else if (empezarTest === "NO"){
-        alert ("Ok bro, nos vemos")
-    }
-    else {
-        alert("No te entiendo crack, era responder SI o NO")
-    }
 }
-alert("Gracias por realizar el test")
