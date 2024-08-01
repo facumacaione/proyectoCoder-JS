@@ -41,7 +41,7 @@ function cardProfesionales(trabajador) {
     
     const boton = document.createElement("button");
     boton.className = "card__boton";
-    boton.innerText = "¡Contáctame!"
+    boton.innerText = "Contáctame"
     boton.addEventListener("click", () => { alert("En breves nos comunicaremos con usted") })
     
     card.append(nombre);
