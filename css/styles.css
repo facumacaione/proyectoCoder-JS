@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #5b88a5;
+    background-color: #333333;
 }
 
 .header-index {
@@ -26,7 +26,7 @@ body {
 
 .header__div__dos {
     text-align: center;
-    color: skyblue;
+    color: black;
 }
 
 #contenedor {
@@ -43,22 +43,44 @@ body {
     flex-direction: column;
     margin: 50px 35px;
     color: white;
+    
+}
+
+.card__nombre {
+    margin-bottom: 5px;
+    color: white;
+}
+
+.card__profesion {
+    margin-bottom: 5px;
+    color: white;
 }
 
 .card__img {
     width: 150px;
     height: 200px;
     object-fit: cover;
+    box-shadow: -15px 1px 48px -21px rgba(255,255,255,0.75);
+    -webkit-box-shadow: -15px 1px 48px -21px rgba(255,255,255,0.75);
+    -moz-box-shadow: -15px 1px 48px -21px rgba(255,255,255,0.75);
+}
+
+.card__precio {
+    padding-top: 20px;
+    color: green;
+    font-weight: 700;
 }
 
 .card__contacto {
+    color: white;
     padding: 15px;
+    font-weight: 500;
 }
 
 .card__boton {
     padding: 10px 20px;
     background-color: #ffff99;;
-    border: 2px solid skyblue;
+    border: 2px solid black;
     border-radius: 10px;
     color: black;
     font-size: 13px;
@@ -66,4 +88,33 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     outline: none;
+}
+
+#botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 75px;
+}
+
+.eliminar_profesional {
+    background-color: red;
+    border: 2px solid white;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.sumar__precio {
+    background-color: greenyellow;
+    border: 2px solid white;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;;
+    
 }
