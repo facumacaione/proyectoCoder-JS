@@ -126,20 +126,28 @@ const botones = document.getElementById("botones");
 
 const eliminarProfesional = document.createElement("button");
 eliminarProfesional.className = "eliminar_profesional";
-eliminarProfesional.innerText = "Eliminar cita";
+eliminarProfesional.innerText = "Eliminar todo";
 eliminarProfesional.addEventListener("click", () => {
     removeProfesional();
-    alert("Su cita ha sido cancelada")
+    alert("Todos sus contactos han sido eliminados")
 })
 
 const sumarPrecio = document.createElement("button");
 sumarPrecio.className = "sumar__precio";
 sumarPrecio.innerText = "Mostrar total";
 sumarPrecio.addEventListener("click", () => {
-    sumarPrecioFinal()
+    sumarPrecioFinal();
+})
+
+const eliminarUltimoProfesional = document.createElement("button");
+eliminarUltimoProfesional.className = "eliminar__ultimo__profesional";
+eliminarUltimoProfesional.innerHTML = "Borrar último profesional"
+eliminarUltimoProfesional.addEventListener("click", () => {
+    removerUltimo();
 })
 
 botones.append(eliminarProfesional);
+botones.append(eliminarUltimoProfesional);
 botones.append(sumarPrecio);
 
 function mostrarProfesionalContactado() {
@@ -148,6 +156,18 @@ function mostrarProfesionalContactado() {
         console.log("Los profesionales contactados son:", contactados);
     } else {
         console.log("No hay profesionales contactados.");
+    }
+}
+
+function removerUltimo() {
+    let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
+    if (contactados.length > 0) {
+        contactados.pop();
+        localStorage.setItem("contactados", JSON.stringify(contactados));
+        alert("El último profesional ha sido eliminado.");
+        console.log("Profesionales contactados actualizados:", contactados);
+    } else {
+        alert("No hay profesionales para eliminar.");
     }
 }
 

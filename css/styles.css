@@ -23,11 +23,12 @@ body {
     height: 120px;
 }
 
-
-.header__div__dos {
+.header__div__dos h1 {
     text-align: center;
     color: black;
+    font-size: 2vw;
 }
+
 
 #contenedor {
     display: flex;
@@ -95,7 +96,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 25px;
-    margin-bottom: 75px;
+    margin-bottom: 60px;
 }
 
 .eliminar_profesional {
@@ -106,6 +107,18 @@ body {
     color: white;
     padding: 10px;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.eliminar__ultimo__profesional {
+    background-color: rgb(58, 171, 215);
+    border: 2px solid white;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .sumar__precio {
@@ -115,6 +128,14 @@ body {
     font-weight: 600;
     color: black;
     padding: 10px;
-    border-radius: 10px;;
-    
+    border-radius: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 720px) {
+    .header__div__dos h1 {
+        font-size: 4vw;
+    }
 }
