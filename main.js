@@ -151,12 +151,11 @@ botones.append(eliminarUltimoProfesional);
 botones.append(sumarPrecio);
 
 function mostrarProfesionalContactado() {
-    const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
-    if (contactados.length > 0) {
-        console.log("Los profesionales contactados son:", contactados);
-    } else {
-        console.log("No hay profesionales contactados.");
-    }
+    let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
+
+        //Al final SI pude agregar operadores ternarios.
+
+    contactados.length > 0 ? console.log("Los profesionales contactados son: ", contactados) : console.log("No hay profesionales contactados");
 }
 
 function removerUltimo() {
@@ -177,16 +176,19 @@ function removeProfesional() {
 
 function sumarPrecioFinal() {
     const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
-    const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-    alert("El precio final de su compra es: $" + totalPrecio);
+    if (contactados.length === 0) {
+        alert("No agregaste a ningún contacto");
+    } else {
+        const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
+        alert("El precio final de su compra es: $" + totalPrecio);
+    }
 }
 
 let edadUsuario;
-    
-while(true) {
 
+while(true) {    
     edadUsuario = parseFloat(prompt("DESEA CONTRATAR ALGÚN SERVICIO?\n Para proceder, por favor, indique su edad"));
-    if (edadUsuario >= 18) {
+    if (edadUsuario >= 18 && edadUsuario <= 120) {
         alert("Bienvenido, en esta web podrá contratar el servicio que requiera, atendido por los mejores profesionales del país");
         arrayDeProfesionales.forEach(el => cardProfesionales(el));
         break
@@ -195,7 +197,7 @@ while(true) {
         break;
 
     } else {
-        alert("No entendí tu respuesta");
+        alert("Poné una edad válida");
     }
 
 }
