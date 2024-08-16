@@ -133,6 +133,11 @@ body {
     cursor: pointer;
 }
 
+.preciofinal__texto {
+    color: white;
+    text-align: center;
+}
+
 
 @media (max-width: 720px) {
     .header__div__dos h1 {

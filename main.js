@@ -1,4 +1,6 @@
 
+// CREACIÓN DE CLASES Y OBJETOS
+
 class Profesional {
     constructor(nombre, profesion, img, precio, contacto) {
         this.nombre = nombre;
@@ -70,6 +72,9 @@ const profesionalDiez = new Profesional("Jorge Sampaoli",
 
 const arrayDeProfesionales = [profesionalUno, profesionalDos, profesionalTres, profesionalCuatro, profesionalCinco, profesionalSeis, profesionalSiete, profesionalOcho, profesionalNueve, profesionalDiez];
 
+
+// FUNCIÓN PARA PASAR A UN FOREACH Y MOSTRAR EN EL DOM TODOS LOS OBJETOS
+
 function cardProfesionales(trabajador) {
     
     const contenedor = document.getElementById("contenedor")
@@ -107,7 +112,7 @@ function cardProfesionales(trabajador) {
 
         localStorage.setItem("contactados", JSON.stringify(contactados));
 
-        alert("Profesional agregado para contratar su servicio");
+        sumarPrecioFinal();
         console.log(mostrarProfesionalContactado());
         
     });
@@ -121,6 +126,8 @@ function cardProfesionales(trabajador) {
     
     contenedor.append(card)
 }
+
+// CREACION DE LOS BOTONES Y AGREGANDOLOS AL DOM CON APPEND
 
 const botones = document.getElementById("botones");
 
@@ -136,7 +143,7 @@ const sumarPrecio = document.createElement("button");
 sumarPrecio.className = "sumar__precio";
 sumarPrecio.innerText = "Mostrar total";
 sumarPrecio.addEventListener("click", () => {
-    sumarPrecioFinal();
+    mostrarPrecioFInal()
 })
 
 const eliminarUltimoProfesional = document.createElement("button");
@@ -150,31 +157,59 @@ botones.append(eliminarProfesional);
 botones.append(eliminarUltimoProfesional);
 botones.append(sumarPrecio);
 
+
+// CREACION DE LAS FUNCIONES
+
 function mostrarProfesionalContactado() {
     let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
-
-        //Al final SI pude agregar operadores ternarios.
-
+    
+    //Al final SI pude agregar operadores ternarios.
     contactados.length > 0 ? console.log("Los profesionales contactados son: ", contactados) : console.log("No hay profesionales contactados");
 }
 
-function removerUltimo() {
+
+function removeProfesional() {
+
     let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
     if (contactados.length > 0) {
-        contactados.pop();
-        localStorage.setItem("contactados", JSON.stringify(contactados));
-        alert("El último profesional ha sido eliminado.");
+        localStorage.clear();
+        document.getElementById("dom__div").innerText = "";
+        sumarPrecioFinal();
         console.log("Profesionales contactados actualizados:", contactados);
     } else {
         alert("No hay profesionales para eliminar.");
     }
 }
 
-function removeProfesional() {
-    localStorage.clear();
+
+function removerUltimo() {
+    let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
+    if (contactados.length > 0) {
+        contactados.pop();
+        localStorage.setItem("contactados", JSON.stringify(contactados));
+        sumarPrecioFinal();
+        console.log("Profesionales contactados actualizados:", contactados);
+    } else {
+        alert("No hay profesionales para eliminar.");
+    }
 }
 
 function sumarPrecioFinal() {
+    const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
+    const domDiv = document.getElementById("dom__div");
+    domDiv.innerText = "";
+    const textoTotalPrecio = document.createElement("p");
+    if (contactados.length === 0) {
+        textoTotalPrecio.innerText = "No agregaste a ningún contacto";
+    } else {
+        const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
+        textoTotalPrecio.innerText = "El precio final de su compra es: $" + totalPrecio;
+        textoTotalPrecio.className = "preciofinal__texto"
+        domDiv.append(textoTotalPrecio);
+    }
+}
+
+function mostrarPrecioFInal() {
     const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
     if (contactados.length === 0) {
         alert("No agregaste a ningún contacto");
@@ -184,20 +219,5 @@ function sumarPrecioFinal() {
     }
 }
 
-let edadUsuario;
 
-while(true) {    
-    edadUsuario = parseFloat(prompt("DESEA CONTRATAR ALGÚN SERVICIO?\n Para proceder, por favor, indique su edad"));
-    if (edadUsuario >= 18 && edadUsuario <= 120) {
-        alert("Bienvenido, en esta web podrá contratar el servicio que requiera, atendido por los mejores profesionales del país");
-        arrayDeProfesionales.forEach(el => cardProfesionales(el));
-        break
-    } else if(edadUsuario <= 17) {
-        alert("Sos menor de edad, entra a la web con un mayor");
-        break;
-
-    } else {
-        alert("Poné una edad válida");
-    }
-
-}
+arrayDeProfesionales.forEach(el => cardProfesionales(el));
