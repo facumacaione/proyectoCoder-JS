@@ -108,13 +108,16 @@ function cardProfesionales(trabajador) {
     boton.addEventListener("click", () => {
         let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
 
-        contactados.push(trabajador);
-
-        localStorage.setItem("contactados", JSON.stringify(contactados));
+        const yaAñadido = contactados.some(el => el.nombre === trabajador.nombre);
+        if (yaAñadido) {
+            alert("Este contacto ya ha sido añadido.");
+        } else {
+            contactados.push(trabajador);
+            localStorage.setItem("contactados", JSON.stringify(contactados));
 
         sumarPrecioFinal();
         console.log(mostrarProfesionalContactado());
-        
+        }
     });
     
     card.append(nombre);
@@ -215,7 +218,7 @@ function mostrarPrecioFInal() {
         alert("No agregaste a ningún contacto");
     } else {
         const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-        alert("El precio final de su compra es: $" + totalPrecio);
+        alert("El monto final de su compra es: $" + totalPrecio);
     }
 }
 
