@@ -114,6 +114,13 @@ function cardProfesionales(trabajador) {
         } else {
             contactados.push(trabajador);
             localStorage.setItem("contactados", JSON.stringify(contactados));
+            Toastify({
+                text: `Contacto añadido: 
+                ${trabajador.nombre}`,
+                duration: 3000,
+                position: "right",
+                gravity: "bottom",
+                }).showToast();
 
         sumarPrecioFinal();
         console.log(mostrarProfesionalContactado());
@@ -206,7 +213,7 @@ function sumarPrecioFinal() {
         textoTotalPrecio.innerText = "No agregaste a ningún contacto";
     } else {
         const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-        textoTotalPrecio.innerText = "El precio final de su compra es: $" + totalPrecio;
+        textoTotalPrecio.innerText = "El precio final de su servicio es de: $" + totalPrecio;
         textoTotalPrecio.className = "preciofinal__texto"
         domDiv.append(textoTotalPrecio);
     }
