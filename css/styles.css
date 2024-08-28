@@ -93,7 +93,7 @@ body {
 
 #botones {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-top: 25px;
     margin-bottom: 60px;
@@ -122,25 +122,52 @@ body {
 }
 
 .sumar__precio {
-    background-color: greenyellow;
+    background-color: rgb(85, 117, 37);
     border: 2px solid white;
     text-transform: uppercase;
     font-weight: 600;
-    color: black;
+    color: white;
     padding: 10px;
     border-radius: 10px;
-    margin-left: 20px;
+    margin-left: 25px;
     cursor: pointer;
 }
 
 .preciofinal__texto {
     color: white;
-    text-align: center;
+    text-align: center ;
+}
+
+.popup {
+    background-color: white !important;
+}
+
+.titulo-sweat {
+    color: #333 !important;
+}
+
+.boton-sweat {
+    background-color: #ffff99 !important;
+    color: black !important;              
 }
 
 
 @media (max-width: 720px) {
     .header__div__dos h1 {
         font-size: 4vw;
+    }
+    #botones {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .sumar__precio {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .eliminar__ultimo__profesional {
+        margin-top: 20px;
     }
 }

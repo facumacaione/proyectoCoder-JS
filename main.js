@@ -110,7 +110,16 @@ function cardProfesionales(trabajador) {
 
         const yaAñadido = contactados.some(el => el.nombre === trabajador.nombre);
         if (yaAñadido) {
-            alert("Este contacto ya ha sido añadido.");
+            Swal.fire({
+                title: "ERROR",
+                text: "Este usuario ya ha sido añadido a tu servicio",
+                icon: "error",
+                customClass: {
+                    popup: "popup",
+                    title: "titulo-sweat",   
+                    confirmButton: "boton-sweat"
+                }
+            });;
         } else {
             contactados.push(trabajador);
             localStorage.setItem("contactados", JSON.stringify(contactados));
@@ -120,6 +129,12 @@ function cardProfesionales(trabajador) {
                 duration: 3000,
                 position: "right",
                 gravity: "bottom",
+                style: {
+                    background: "#FFC107",
+                    color: "#000",
+                    fontWeight: "500",
+                    borderRadius: "20px"
+                }
                 }).showToast();
 
         sumarPrecioFinal();
@@ -146,7 +161,6 @@ eliminarProfesional.className = "eliminar_profesional";
 eliminarProfesional.innerText = "Eliminar todo";
 eliminarProfesional.addEventListener("click", () => {
     removeProfesional();
-    alert("Todos sus contactos han sido eliminados")
 })
 
 const sumarPrecio = document.createElement("button");
@@ -180,16 +194,38 @@ function mostrarProfesionalContactado() {
 
 function removeProfesional() {
 
-    let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
-    if (contactados.length > 0) {
-        localStorage.clear();
-        document.getElementById("dom__div").innerText = "";
-        sumarPrecioFinal();
-        console.log("Profesionales contactados actualizados:", contactados);
-    } else {
-        alert("No hay profesionales para eliminar.");
-    }
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4CAF50",
+        cancelButtonColor: "#FF5733",  
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
+            if (contactados.length > 0) {
+                localStorage.clear(); 
+                document.getElementById("dom__div").innerText = ""; 
+                sumarPrecioFinal();
+                Swal.fire({
+                    title: "Eliminado!",
+                    text: "Tus contactos han sido eliminados.",
+                    icon: "success"
+                });
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "No tienes contactos en tu carrito.",
+                    icon: "error"
+                });
+            }
+        }
+    });
 }
+
 
 
 function removerUltimo() {
@@ -200,7 +236,11 @@ function removerUltimo() {
         sumarPrecioFinal();
         console.log("Profesionales contactados actualizados:", contactados);
     } else {
-        alert("No hay profesionales para eliminar.");
+        Swal.fire({
+            title: "Error",
+            text: "No hay profesionales a eliminar",
+            icon: "error"
+        });;
     }
 }
 
@@ -213,7 +253,7 @@ function sumarPrecioFinal() {
         textoTotalPrecio.innerText = "No agregaste a ningún contacto";
     } else {
         const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-        textoTotalPrecio.innerText = "El precio final de su servicio es de: $" + totalPrecio;
+        textoTotalPrecio.innerText = "Precio total de los servicios: $" + totalPrecio;
         textoTotalPrecio.className = "preciofinal__texto"
         domDiv.append(textoTotalPrecio);
     }
@@ -222,10 +262,14 @@ function sumarPrecioFinal() {
 function mostrarPrecioFInal() {
     const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
     if (contactados.length === 0) {
-        alert("No agregaste a ningún contacto");
+        Swal.fire({
+            title: "No hay contactos",
+            text: "Tu carrito está vacío, no contrataste ningún servicio",
+            icon: "error"
+        });;
     } else {
         const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-        alert("El monto final de su compra es: $" + totalPrecio);
+        Swal.fire("El monto final de su compra es: $" + totalPrecio);
     }
 }
 
