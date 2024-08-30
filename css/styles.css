@@ -151,6 +151,10 @@ body {
     color: black !important;              
 }
 
+.mostrar-profesional-dom {
+    text-align: center;
+    color: white;
+}
 
 @media (max-width: 720px) {
     .header__div__dos h1 {

@@ -1,78 +1,4 @@
 
-// CREACIÓN DE CLASES Y OBJETOS
-
-class Profesional {
-    constructor(nombre, profesion, img, precio, contacto) {
-        this.nombre = nombre;
-        this.profesion = profesion;
-        this.img = img;
-        this.precio = precio;
-        this.contacto = contacto;
-    }
-}
-
-const profesionalUno = new Profesional("Jorge Almirón",
-    "Brujo",
-    "img/almiron.png",
-    5000,
-    "JorgeAlmironCAB7@gmail.com");
-const profesionalDos = new Profesional("Marcelo Daniel Gallardo",
-    "Ingeniero Civil",
-    "img/muñeco.png",
-    10000,
-    "MarceGallardo912@gmail.com");
-const profesionalTres = new Profesional("Carlos Bilardo",
-    "Médico", 
-    "img/carlos-bilardo.jpg",
-    14000,
-    "SalvadorBilardo@outlook.com");
-const profesionalCuatro = new Profesional("Martín Demichelis",
-    "Psicólogo",
-    "img/demichelis.jpg",
-    8000,
-    "DemichelisVibes@gmail.com");
-const profesionalCinco = new Profesional("Carlos Bianchi",
-    "Abogado", 
-    "img/carleto.png",
-    20000,
-    "CarlosVirrey3@hotmail.com");
-const profesionalSeis = new Profesional("Caruso Lombardi",
-    "Payaso",
-    "img/lombardi.png",
-    9000,
-    "CarusoLombardi@gmail.com")
-
-const profesionalSiete = new Profesional("Lionel Scaloni",
-    "Ingeniero Industrial",
-    "img/scaloni.png",
-    30000,
-    "LionelScaloneta@gmail.com"
-)
-
-const profesionalOcho = new Profesional("Marcelo Bielsa",
-    "Psiquiatra",
-    "img/bielsa.png",
-    5000,
-    "MarcelitoBielsa@hotmail.com"
-)
-
-const profesionalNueve = new Profesional("Diego Simeone",
-    "Guitarrista",
-    "img/simeone.png",
-    18000,
-    "DieguitoSimeone@hotmail.com"
-)
-
-const profesionalDiez = new Profesional("Jorge Sampaoli",
-    "Veterinario",
-    "img/sampaoli.png",
-    12500,
-    "JorgeSampaoli@gmail.com"
-)
-
-const arrayDeProfesionales = [profesionalUno, profesionalDos, profesionalTres, profesionalCuatro, profesionalCinco, profesionalSeis, profesionalSiete, profesionalOcho, profesionalNueve, profesionalDiez];
-
-
 // FUNCIÓN PARA PASAR A UN FOREACH Y MOSTRAR EN EL DOM TODOS LOS OBJETOS
 
 function cardProfesionales(trabajador) {
@@ -138,7 +64,6 @@ function cardProfesionales(trabajador) {
                 }).showToast();
 
         sumarPrecioFinal();
-        console.log(mostrarProfesionalContactado());
         }
     });
     
@@ -167,7 +92,7 @@ const sumarPrecio = document.createElement("button");
 sumarPrecio.className = "sumar__precio";
 sumarPrecio.innerText = "Mostrar total";
 sumarPrecio.addEventListener("click", () => {
-    mostrarPrecioFInal()
+    mostrarPrecioFinal()
 })
 
 const eliminarUltimoProfesional = document.createElement("button");
@@ -183,14 +108,6 @@ botones.append(sumarPrecio);
 
 
 // CREACION DE LAS FUNCIONES
-
-function mostrarProfesionalContactado() {
-    let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
-    
-    //Al final SI pude agregar operadores ternarios.
-    contactados.length > 0 ? console.log("Los profesionales contactados son: ", contactados) : console.log("No hay profesionales contactados");
-}
-
 
 function removeProfesional() {
 
@@ -259,7 +176,7 @@ function sumarPrecioFinal() {
     }
 }
 
-function mostrarPrecioFInal() {
+function mostrarPrecioFinal() {
     const contactados = JSON.parse(localStorage.getItem("contactados")) || [];
     if (contactados.length === 0) {
         Swal.fire({
@@ -274,4 +191,14 @@ function mostrarPrecioFInal() {
 }
 
 
-arrayDeProfesionales.forEach(el => cardProfesionales(el));
+// FETCH PARA OBTENER LOS PROFESIONALES DESDE EL ARCHIVO JSON
+
+fetch('./profesionales.json')
+    .then(response => response.json())
+    .then(data => {
+        const profesionales = data.profesionales;
+        profesionales.forEach(el => {
+            cardProfesionales(el);
+    });
+})
+    .catch(error => console.error('Error al obtener los profesionales:', error));

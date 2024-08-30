@@ -1,0 +1,74 @@
+{
+    "profesionales": [
+    {
+        "nombre": "Jorge Almirón",
+        "profesion": "Brujo",
+        "img": "img/almiron.png",
+        "precio": 5000,
+        "contacto": "JorgeAlmironCAB7@gmail.com"
+    },
+    {
+        "nombre": "Marcelo Daniel Gallardo",
+        "profesion": "Ingeniero Civil",
+        "img": "img/muñeco.png",
+        "precio": 10000,
+        "contacto": "MarceGallardo912@gmail.com"
+    },
+    {
+        "nombre": "Carlos Bilardo",
+        "profesion": "Médico",
+        "img": "img/carlos-bilardo.jpg",
+        "precio": 14000,
+        "contacto": "SalvadorBilardo@outlook.com"
+    },
+    {
+        "nombre": "Martín Demichelis",
+        "profesion": "Psicólogo",
+        "img": "img/demichelis.jpg",
+        "precio": 8000,
+        "contacto": "DemichelisVibes@gmail.com"
+    },
+    {
+        "nombre": "Carlos Bianchi",
+        "profesion": "Abogado",
+        "img": "img/carleto.png",
+        "precio": 20000,
+        "contacto": "CarlosVirrey3@hotmail.com"
+    },
+    {
+        "nombre": "Caruso Lombardi",
+        "profesion": "Payaso",
+        "img": "img/lombardi.png",
+        "precio": 9000,
+        "contacto": "CarusoLombardi@gmail.com"
+    },
+    {
+        "nombre": "Lionel Scaloni",
+        "profesion": "Ingeniero Industrial",
+        "img": "img/scaloni.png",
+        "precio": 30000,
+        "contacto": "LionelScaloneta@gmail.com"
+    },
+    {
+        "nombre": "Marcelo Bielsa",
+        "profesion": "Psiquiatra",
+        "img": "img/bielsa.png",
+        "precio": 5000,
+        "contacto": "MarcelitoBielsa@hotmail.com"
+    },
+    {
+        "nombre": "Diego Simeone",
+        "profesion": "Guitarrista",
+        "img": "img/simeone.png",
+        "precio": 18000,
+        "contacto": "DieguitoSimeone@hotmail.com"
+    },
+    {
+        "nombre": "Jorge Sampaoli",
+        "profesion": "Veterinario",
+        "img": "img/sampaoli.png",
+        "precio": 12500,
+        "contacto": "JorgeSampaoli@gmail.com"
+    }
+    ]
+}
