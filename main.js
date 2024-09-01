@@ -62,7 +62,6 @@ function cardProfesionales(trabajador) {
                     borderRadius: "20px"
                 }
                 }).showToast();
-
         sumarPrecioFinal();
         }
     });
@@ -143,8 +142,6 @@ function removeProfesional() {
     });
 }
 
-
-
 function removerUltimo() {
     let contactados = JSON.parse(localStorage.getItem("contactados")) || [];
     if (contactados.length > 0) {
@@ -186,7 +183,10 @@ function mostrarPrecioFinal() {
         });;
     } else {
         const totalPrecio = contactados.reduce((acc, el) => acc + el.precio, 0);
-        Swal.fire("El monto final de su compra es: $" + totalPrecio);
+        const nombreProfesionales = contactados.map(el => `<li>${el.nombre} (${el.profesion})</li>`).join(' ');
+        Swal.fire(`Contactaste a estos profesionales: ${nombreProfesionales}
+
+            El monto final de su servicio es: $ ${totalPrecio}`);
     }
 }
 
